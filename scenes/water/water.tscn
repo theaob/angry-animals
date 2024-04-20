@@ -18,7 +18,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 1200, 128)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(577, -12.5)
+position = Vector2(586, -24)
 shape = SubResource("RectangleShape2D_anah1")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
