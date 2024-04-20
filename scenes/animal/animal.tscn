@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbrwir7v00k13"]
+[gd_scene load_steps=7 format=3 uid="uid://bbrwir7v00k13"]
 
 [ext_resource type="Script" path="res://scenes/animal/animal.gd" id="1_770yo"]
 [ext_resource type="Texture2D" uid="uid://dtuox5pm2uxt0" path="res://assets/player/parrot.png" id="2_j23dk"]
+[ext_resource type="Texture2D" uid="uid://c1q3neogjs6v3" path="res://assets/items/arrow.png" id="3_mqoon"]
+[ext_resource type="AudioStream" uid="uid://cwpdeksam5wmc" path="res://assets/audio/stretch2.ogg" id="4_tj7tt"]
+[ext_resource type="AudioStream" uid="uid://cgpfbajkmb76q" path="res://assets/audio/catapult.ogg" id="5_woe6b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tgu0u"]
 radius = 126.667
@@ -25,10 +28,22 @@ scale = Vector2(2.5, 2.5)
 
 [node name="Label" type="Label" parent="."]
 offset_left = -20.0
-offset_top = -46.0
+offset_top = -70.0
 offset_right = 20.0
-offset_bottom = -23.0
+offset_bottom = -47.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+
+[node name="Arrow" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_mqoon")
+offset = Vector2(160, 0)
+
+[node name="StretchSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_tj7tt")
+
+[node name="LaunchSound" type="AudioStreamPlayer2D" parent="."]
+scale = Vector2(0.25, 0.25)
+stream = ExtResource("5_woe6b")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
