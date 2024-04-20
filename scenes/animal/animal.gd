@@ -39,17 +39,23 @@ func _physics_process(delta):
 func get_impulse() -> Vector2:
 	return _dragged_vector * -1 * IMPULSE_MULTIPLIER
 	
+func set_release():
+	freeze = false
+	arrow.hide()
+	apply_central_impulse(get_impulse())
+	launch_sound.play()
+	
+func set_drag():
+	_drag_start = get_global_mouse_position()
+	arrow.show()
+	
 func set_new_state(new_state: ANIMAL_STATE):
 	_state = new_state
 	
 	if _state == ANIMAL_STATE.RELEASE:
-		freeze = false
-		arrow.hide()
-		apply_central_impulse(get_impulse())
-		launch_sound.play()
+		set_release()
 	elif _state == ANIMAL_STATE.DRAG:
-		arrow.show()
-		_drag_start = get_global_mouse_position()
+		set_drag()
 	
 func detect_release():
 	if _state == ANIMAL_STATE.DRAG:
