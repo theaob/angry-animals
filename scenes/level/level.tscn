@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqxww03ygwkmq"]
+
+[ext_resource type="Texture2D" uid="uid://d0wvgjddpjrf3" path="res://assets/scene/colored_castle.png" id="1_qot0w"]
+[ext_resource type="PackedScene" uid="uid://ct3i2s8m5vaoj" path="res://scenes/water/water.tscn" id="2_slg1q"]
+
+[node name="Level" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(568, 317)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("1_qot0w")
+
+[node name="AnimalStart" type="Marker2D" parent="."]
+position = Vector2(107, 371)
+
+[node name="Water" parent="." instance=ExtResource("2_slg1q")]
+position = Vector2(-4, 631)
