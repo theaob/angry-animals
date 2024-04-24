@@ -12,6 +12,7 @@ const IMPULSE_MAX: float = 1200.0
 @onready var label = $Label
 @onready var stretch_sound = $StretchSound
 @onready var launch_sound = $LaunchSound
+@onready var kick_sound = $KickSound
 @onready var arrow = $Arrow
 
 var _state: ANIMAL_STATE = ANIMAL_STATE.READY
@@ -22,6 +23,8 @@ var _dragged_vector: Vector2 = Vector2.ZERO
 var _last_dragged_vector: Vector2 = Vector2.ZERO
 
 var _arrow_scale_x: float = 0.0
+
+var _last_collision_count: int = 0
 
 func _ready():
 	_start = position
@@ -108,13 +111,25 @@ func update_drag():
 	drag_in_limits()
 	
 	scale_arrow()
+	
+func play_collision():
+	if (_last_collision_count == 0 and 
+	get_contact_count() > 0 and 
+	kick_sound.playing == false) :
+		kick_sound.play()
+	
+	_last_collision_count = get_contact_count()
+			
+
+func update_flight():
+	play_collision()
 
 func update(_delta: float):
 	match _state:
 		ANIMAL_STATE.DRAG:
 			update_drag()
 		ANIMAL_STATE.RELEASE:
-			pass
+			update_flight()
 		
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	die()
@@ -126,3 +141,7 @@ func die():
 func _on_input_event(_viewport, event, _shape_idx):
 	if _state == ANIMAL_STATE.READY and event.is_action_pressed("drag"):
 		set_new_state(ANIMAL_STATE.DRAG)
+
+func _on_sleeping_state_changed():
+	if sleeping:
+		call_deferred("die")
