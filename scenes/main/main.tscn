@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwecf7l78q8tj"]
+
+[ext_resource type="Texture2D" uid="uid://byljlb1835df3" path="res://assets/env/MainBG.png" id="1_mn88g"]
+[ext_resource type="PackedScene" uid="uid://c3nc0urng37bx" path="res://scenes/level_button/level_button.tscn" id="2_20qjr"]
+[ext_resource type="LabelSettings" uid="uid://63cutltsgui3" path="res://assets/lg_96_bl.tres" id="3_vx7bg"]
+[ext_resource type="AudioStream" uid="uid://br241abgpbuh8" path="res://assets/audio/birdsong.wav" id="4_7nlb5"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_mn88g")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -154.0
+offset_top = -50.0
+offset_right = 154.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+
+[node name="LevelButton" parent="HBoxContainer" instance=ExtResource("2_20qjr")]
+layout_mode = 2
+
+[node name="LevelButton2" parent="HBoxContainer" instance=ExtResource("2_20qjr")]
+layout_mode = 2
+
+[node name="LevelButton3" parent="HBoxContainer" instance=ExtResource("2_20qjr")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 222.5
+offset_right = 262.5
+offset_bottom = 40.0
+rotation = 0.0523599
+theme_override_constants/margin_top = 10
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+text = "ANGRY ANIMALS"
+label_settings = ExtResource("3_vx7bg")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_7nlb5")
+autoplay = true

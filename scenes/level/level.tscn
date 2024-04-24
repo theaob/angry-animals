@@ -24,7 +24,7 @@ position = Vector2(8, 603)
 position = Vector2(333, 449)
 
 [node name="Cup2" parent="." instance=ExtResource("4_25bd1")]
-position = Vector2(636, 137)
+position = Vector2(787, 282)
 
 [node name="Cup3" parent="." instance=ExtResource("4_25bd1")]
 position = Vector2(496, 288)
