@@ -1,7 +1,6 @@
 extends Node2D
 
 const ANIMAL = preload("res://scenes/animal/animal.tscn")
-const MAIN = preload("res://scenes/main/main.tscn")
 
 @onready var animal_start = $AnimalStart
 
@@ -9,10 +8,6 @@ func _ready():
 	add_animal()
 	SignalManager.animal_died.connect(_on_animal_died)
 	SignalManager.level_completed.connect(_on_level_completed)
-	
-func _process(_delta):
-	if Input.is_key_pressed(KEY_ESCAPE):
-		get_tree().change_scene_to_packed(MAIN)
 	
 func add_animal():
 	var animal_instance = ANIMAL.instantiate()
@@ -23,4 +18,7 @@ func _on_animal_died():
 	add_animal()
 	
 func _on_level_completed():
-	get_tree().change_scene_to_packed(MAIN)
+	var animal_instances = get_tree().get_nodes_in_group("animal")
+	
+	for animal in animal_instances:
+		animal.call_deferred("queue_free")

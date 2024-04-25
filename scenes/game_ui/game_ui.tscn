@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://cxwji4w36ml8h"]
+
+[ext_resource type="LabelSettings" uid="uid://nabjvavl2pas" path="res://assets/lg_48_gr.tres" id="1_06110"]
+[ext_resource type="Script" path="res://scenes/game_ui/game_ui.gd" id="1_oxjd2"]
+[ext_resource type="LabelSettings" uid="uid://63cutltsgui3" path="res://assets/lg_96_bl.tres" id="2_s8mc6"]
+[ext_resource type="LabelSettings" uid="uid://0wgiivn64pat" path="res://assets/lg_48_wh.tres" id="3_nn48d"]
+[ext_resource type="AudioStream" uid="uid://cmexb4sp4a8wr" path="res://assets/audio/jazzyfrenchy.mp3" id="5_caork"]
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_oxjd2")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="LevelLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "LEVEL 10"
+label_settings = ExtResource("1_06110")
+
+[node name="AttemptsLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "ATTEMPTS 100"
+label_settings = ExtResource("1_06110")
+
+[node name="LevelCompleteContainer" type="VBoxContainer" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/LevelCompleteContainer"]
+layout_mode = 2
+text = "LEVEL COMPLETE"
+label_settings = ExtResource("2_s8mc6")
+
+[node name="Label2" type="Label" parent="MarginContainer/LevelCompleteContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "PRESS ESCAPE TO CONTINUE"
+label_settings = ExtResource("3_nn48d")
+
+[node name="LevelCompleteSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_caork")
