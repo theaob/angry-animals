@@ -8,6 +8,7 @@ const MAIN = preload("res://scenes/main/main.tscn")
 func _ready():
 	add_animal()
 	SignalManager.animal_died.connect(_on_animal_died)
+	SignalManager.level_completed.connect(_on_level_completed)
 	
 func _process(_delta):
 	if Input.is_key_pressed(KEY_ESCAPE):
@@ -20,3 +21,6 @@ func add_animal():
 
 func _on_animal_died():
 	add_animal()
+	
+func _on_level_completed():
+	get_tree().change_scene_to_packed(MAIN)

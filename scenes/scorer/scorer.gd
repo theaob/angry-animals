@@ -13,10 +13,11 @@ func _ready():
 
 func _on_attempt_made() -> void:
 	_attemps += 1
+	SignalManager.score_updated.emit(_attemps)
 
 func _on_cup_destroyed() -> void:
 	_cups_hit += 1
 	
 	if _cups_hit == _total_cups:
-		print("Level completed")
-		pass
+		SignalManager.level_completed.emit()
+		ScoreManager.set_score_for_level(_attemps, str(_level_number))
